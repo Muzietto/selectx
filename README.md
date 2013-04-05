@@ -11,3 +11,5 @@ Other aspects currently NOT shown in the presentation page are:
 - usage of templates in the creation of the option widgets (only jtemplates supported as of writing)
 - attachment of data to the option widgets
 - getter methods: 'chosenData' and 'bitmask'
+
+NB - this plugin depends on underscore.js.
