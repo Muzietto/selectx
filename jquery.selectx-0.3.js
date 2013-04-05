@@ -2,7 +2,8 @@
    Select Xor for jQuery - release 0.3
    Dual licensed under the GPL (http://dev.jquery.com/browser/trunk/jquery/GPL-LICENSE.txt) and 
    MIT (http://dev.jquery.com/browser/trunk/jquery/MIT-LICENSE.txt) licenses. 
-   Please attribute the author if you use this plugin. */
+   Please attribute the author if you use this plugin. 
+   Requires underscore.js */
 
 (function($) {
     var SelectX, getters, isNotChained, plugin
@@ -203,7 +204,7 @@
 
                     /* AAA!!! - optional re-initialisation of the option
                      * NB: at this moment instance options and defaults haven't yet been merged' */
-                    if (optObj.data[options.flagChosenOption||plugin._defaults.flagChosenOption]){  
+                    if (optObj.data && optObj.data[options.flagChosenOption||plugin._defaults.flagChosenOption]){  
                         plugin._changeSelect($target, options, $option);
                     }
                 });
@@ -335,7 +336,9 @@
                 }
                 /* remove object locator; if more stuff needs removing,
                  * put instructions inside onSelectCallback */
-                delete optionData.locator;
+				 if (optionData && optionData.locator) {
+					delete optionData.locator;
+				}
                 
                 // execute custom callback - this = $optionsWidget
                 if (options.onUnselectCallback) {

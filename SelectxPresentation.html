@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>SELECTX PRESENTATION</title>
+	
+		<!-- Required BEGIN
+		<script type="text/javascript" src="file:///C:\Users\mfaustinelli\Documents\PROFESSIONAL STUFF\REITEK\configuratore\yui_2.7.0b/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+		<script type="text/javascript" src="file:///C:\Users\mfaustinelli\Documents\PROFESSIONAL STUFF\REITEK\configuratore\yui_2.7.0b/build/logger/logger-min.js"></script>
+		<script type="text/javascript" src="file:///C:\Users\mfaustinelli\Documents\PROFESSIONAL STUFF\REITEK\configuratore\yui_2.7.0b/build/yuitest/yuitest-min.js"></script>
+		-->
+		<script type="text/javascript" src="./lib/jquery-1.7.js"></script>
+		<script type="text/javascript" src="./lib/underscore.js"></script>
+		<script type="text/javascript" src="./jquery.selectx-0.3.js"></script>
+		
+		<link rel="stylesheet" href="./css/jquery.selectx.css" type="text/css"></link>
+		<!-- Required END-->
+		
+		<!-- jQuery/Yahoo stuff BEGIN -->
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#allDefaults').selectx();
+				$('#dressExistingSelect').selectx();
+				$('#nullOptionMessage').selectx({nullOptionMessage:'have a go, my friend'});
+				$('#selectOnce').selectx({selectOnce:true});
+				$('#selectOne').selectx({selectOne:true});
+				$('#onSelectCallback').selectx({onSelectCallback:function(){alert($('label',this).text());}});
+				$('#onUnselectCallback').selectx({onUnselectCallback:function(){alert($('label',this).text());}});
+				$('#selectionsContainer').selectx({selectionsContainer:$('#rightThere')});
+				$('#optionsList').selectx({optionsList:[{'text':'my own option 1','value':1},{'text':'my own option 2','value':2}]});
+				$('#templateHtml').selectx({templateHtml:'<fieldset class="selectx-option-widget"><legend class="selectx-option-value"></legend><a class="selectx-delete-widget">click to delete</a></fieldset>'});
+			})
+		</script>
+		<!-- jQuery/Yahoo stuff END -->
+		
+	</head>
+	<body class="yui-skin-sam">
+	<div class="horizon">
+		<h1>SelectX presentation page</h1>
+		<p>The following examples illustrate the basic functionalities of this plugin. <br/>
+		All the needed customisation code is put inside this HTML page. <br/>
+		The default option widget template is a string defined inside the plugin itself.</p>
+			<fieldset id="allDefaultsDiv" class="" style="">
+				<legend>1) All defaults</legend>
+				<p>The purpose of SelectX is to keep a record of all your choices</p>
+				<select id="allDefaults"></select>
+			</fieldset>
+			
+			<fieldset id="dressExistingSelectDiv" class="" style="">
+				<legend>2) Dress an existing select</legend>
+				<p>Provide an existing select with selectx capabilities</p>
+				<select id="dressExistingSelect">
+					<option>existing option 1</option>
+					<option>existing option 2</option>
+					<option>existing option 3</option>
+					<option>existing option 4</option>
+				</select>
+			</fieldset>
+			
+			<fieldset id="nullOptionMessageDiv" class="" style="">
+				<legend>3) {nullOptionMessage:'have a go, my friend'}</legend>
+				<p>Personalized null label</p>
+				<select id="nullOptionMessage"></select>
+			</fieldset>
+			
+			<fieldset id="selectOnceDiv" class="" style="">
+				<legend>4) {selectOnce:true}</legend>
+				<p>Chosen options become unavailable, but reappear when you delete their widget</p>
+				<select id="selectOnce"></select>
+			</fieldset>
+			
+			<fieldset id="selectOneDiv" class="" style="">
+				<legend>5) {selectOne:true}</legend>
+				<p>You may choose only one time</p>
+				<select id="selectOne"></select>
+			</fieldset>
+			
+			<fieldset id="onSelectCallbackDiv" class="" style="">
+				<legend>6) {onSelectCallback:aFunction}</legend>
+				<p>Do whatever you want at the end of the widget creation</p>
+				<select id="onSelectCallback"></select>
+			</fieldset>
+			
+			<fieldset id="onUnselectCallbackDiv" class="" style="">
+				<legend>7) {onUnselectCallback:aFunction}</legend>
+				<p>Do whatever you want before the widget disappears</p>
+				<select id="onUnselectCallback"></select>
+			</fieldset>
+			
+			<fieldset id="selectionsContainerDiv" class="" style="">
+				<legend>8) {selectionsContainer:$jquerySelector}</legend>
+				<p>Attach option widgets wherever you want</p>
+				<select id="selectionsContainer"></select>
+				<div id="rightThere" style="float:right;width:20%;min-height:50px;border:1px solid red;"></div>
+				<br clear="both"/>
+			</fieldset>
+			
+			<fieldset id="optionsListDiv" class="" style="">
+				<legend>9) {optionsList:anArray}</legend>
+				<p>You may provide your own list of options. Minimal required fields are 'text' and 'value'</p>
+				<select id="optionsList"></select>
+			</fieldset>
+			
+			<fieldset id="templateHtmlDiv" class="" style="">
+				<legend>9) {templateHtml:aString}</legend>
+				<p>Provide your own static HTML for the option widget. There are some mandatory class names to use.</p>
+				<select id="templateHtml"></select>
+			</fieldset>
+			
+			<br clear="both"/>
+		</div>
+	</body>
+</html>
