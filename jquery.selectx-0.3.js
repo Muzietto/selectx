@@ -2,11 +2,11 @@
    Select Xor for jQuery - release 0.3
    Dual licensed under the GPL (http://dev.jquery.com/browser/trunk/jquery/GPL-LICENSE.txt) and 
    MIT (http://dev.jquery.com/browser/trunk/jquery/MIT-LICENSE.txt) licenses. 
-   Please attribute the author if you use this plugin. 
+   Please attribute the author if you use this plugin.
    Requires underscore.js */
 
 (function($) {
-    var SelectX, getters, isNotChained, plugin
+    var SelectX, getters, isNotChained, plugin, log
     ;
 
     /* SelectX */
@@ -25,6 +25,11 @@
             templateEngine: false,
             /* if true, each option receives a unique id (select id as prefix - if any) */
             optionIds: false,
+            /* must be set to some sort of function(msg){...}}, callable with 'inst.options.log('abdce');
+             * NB - if you use it you gotta put yourself in the code all log instructions you need */
+            log: function(){
+                return false;
+            },
             /* flag to signal that an item has been chosen;
              * used during plugin redraw */
             flagChosenOption: 'chosenOption',
@@ -188,24 +193,26 @@
                     value:''
                 }));
                 _(inst.options.optionsList).each(function(optObj){
-                    var $option = $('<option/>',optObj);
+                    if (optObj.text && optObj.value){ // minimal guard against bad optionObjects
+                        var $option = $('<option/>',optObj);
 
-                    // options decide whether to give an id to each option
-                    if (inst.options.optionIds){
-                        // e.g. "<selectid>.123"
-                        $option.attr('id',$target.attr('id')+'.'+optObj.value);
-                    }
+                        // options decide whether to give an id to each option
+                        if (inst.options.optionIds){
+                            // e.g. "<selectid>.123"
+                            $option.attr('id',$target.attr('id')+'.'+optObj.value);
+                        }
 
-                    // append given data to the option
-                    if (optObj && optObj.data) {  // workaround to IE/underscore.js quirk
-                        $option.data(that.pluginName+'-optiondata',optObj.data);
-                    }
-                    $target.append($option);
+                        // append given data to the option
+                        if (optObj && optObj.data) {  // workaround to IE/underscore.js quirk
+                            $option.data(that.pluginName+'-optiondata',optObj.data);
+                        }
+                        $target.append($option);
 
-                    /* AAA!!! - optional re-initialisation of the option
+                        /* AAA!!! - optional re-initialisation of the option widget
                      * NB: at this moment instance options and defaults haven't yet been merged' */
-                    if (optObj.data && optObj.data[options.flagChosenOption||plugin._defaults.flagChosenOption]){  
-                        plugin._changeSelect($target, options, $option);
+                        if (optObj.data && optObj.data[options.flagChosenOption||plugin._defaults.flagChosenOption]){
+                            plugin._changeSelect($target, options, $option);
+                        }
                     }
                 });
             }
@@ -315,7 +322,7 @@
             $widgetDeleter = $('.'+this.deleteWidgetClass,$optionsWidget);
             $widgetDeleter.data(this.pluginName+'-option',$chosenOption);  // attach option to $deleter
             $widgetDeleter.click(function(event){
-                var opt, dummySpan
+                var $opt, dummySpan
                 ;
                 /* NB - 'this' = $widgetDeleter[0] !!!
                  * gotta use 'that' to refer to the plugin instance */
@@ -327,18 +334,21 @@
                     //	$(this).data(that.pluginName+'-option')
                     //	.removeClass(that.selectedOptionClass);  //  - THIS WON'T WORK IN IE!!!
 
+                    $opt = $(this).data(that.pluginName+'-option');
+                    /*
                     // cross-browser hack (cfr. http://ajax911.com/hide-options-selecbox-jquery/)
-                    opt = $(this).data(that.pluginName+'-option');
-                    if (opt.parent('span').length > 0) {
-                        dummySpan = opt.parent('span');
-                        dummySpan.replaceWith(opt);
+                    if ($opt.parent('span').length > 0) {
+                        dummySpan = $opt.parent('span');
+                        dummySpan.replaceWith($opt);
                     }
+                    */
+                   $opt.removeAttr('disabled');
                 }
                 /* remove object locator; if more stuff needs removing,
                  * put instructions inside onSelectCallback */
-				 if (optionData && optionData.locator) {
-					delete optionData.locator;
-				}
+                if (optionData && optionData.locator) {
+                    delete optionData.locator;
+                }
                 
                 // execute custom callback - this = $optionsWidget
                 if (options.onUnselectCallback) {
@@ -354,14 +364,15 @@
             }
 
             if (options.selectOne) {  // make invisible ALL options
-                $('option',$target).wrap('<span>');
+                $('option',$target).wrap('<span style="display:none;">');
             }
             else if (options.selectOnce) {
                 // find and mark selected option - it becomes invisible - THIS WON'T WORK IN IE!!!
                 //$chosenOption.addClass(this.selectedOptionClass);
 			
                 // cross-browser hack (cfr. http://ajax911.com/hide-options-selecbox-jquery/)
-                $chosenOption.wrap('<span>');
+                //$chosenOption.wrap('<span style="display:none;">');
+                $chosenOption.attr('disabled','disabled');
             }
 		
             // execute custom callback - this = $optionsWidget
@@ -399,7 +410,14 @@
                 }
             })
             return result;
+        },
+
+        log : function(text){
+            if (this.options.logger) {
+                this.options.logger.log('SelectX: ' +text);
+            }
         }
+
     });
 
     // The list of methods that return values and don't permit chaining
@@ -415,7 +433,7 @@
             return true;
         }
         return $.inArray(method, getters) > -1;
-    }
+    };
 
     /* Attach the selectx functionality to a jQuery selection.
    @param  options  (object) the new settings to use for these instances (optional) or
