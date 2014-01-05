@@ -39,7 +39,7 @@
 		<h1>SelectX presentation page</h1>
 		<p>The following examples illustrate the basic functionalities of this plugin. <br/>
 		All the needed customisation code is put inside this HTML page. <br/>
-		The default option widget template is a string defined inside the plugin itself.</p>
+		The default option widget template is defined inside the plugin itself.</p>
 			<fieldset id="allDefaultsDiv" class="" style="">
 				<legend>1) All defaults</legend>
 				<p>The purpose of SelectX is to keep a record of all your choices</p>
@@ -103,9 +103,13 @@
 			
 			<fieldset id="templateHtmlDiv" class="" style="">
 				<legend>9) {templateHtml:aString}</legend>
-				<p>Provide your own static HTML for the option widget. There are some mandatory class names to use.</p>
+				<p>Provide your own static HTML snippet for the option widget. There are some mandatory class names to use.</p>
 				<select id="templateHtml"></select>
 			</fieldset>
+			
+			<p>Other features, not illustrated in this page:<br/>
+			- Serialisation of the plugin status with ordered recording of the chosen items<br/>
+			- Restore of the plugin after serialisation.</p>
 			
 			<br clear="both"/>
 		</div>
