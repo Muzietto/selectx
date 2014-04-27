@@ -12,4 +12,4 @@ Other aspects currently NOT shown in the presentation page are:
 - attachment of data to the option widgets
 - getter methods: 'chosenData' and 'bitmask'
 
-NB - this plugin depends on underscore.js.
+NB!! - this plugin depends on underscore.js.
