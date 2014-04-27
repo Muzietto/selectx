@@ -3,6 +3,8 @@ SelectX - jQuery plugin
 
 This jQuery plugin must be attached to an existing HTML select. Its basic purpose is to keep track of the choices made with that select.
 
+[Here](http://muzietto.github.io/selectx/) is a demo.
+
 Each choice is recorded in the form of an HTML snippet called 'option widget'. Option widgets may contain a 'delete' element to remove the choice they represent.
 
 There are several options, most of them illustrated in the HTML presentation page.
