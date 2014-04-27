@@ -12,30 +12,30 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-		<!-- Required BEGIN -->
+    <!-- Required BEGIN -->
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-		<script type="text/javascript" src="https://rawgit.com/Muzietto/selectx/master/jquery.selectx-0.3.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/Muzietto/selectx/master/jquery.selectx-0.3.js"></script>
 		
-		<link rel="stylesheet" href="https://rawgit.com/Muzietto/selectx/master/css/jquery.selectx.css" type="text/css"></link>
-		<!-- Required END-->
+    <link rel="stylesheet" href="https://rawgit.com/Muzietto/selectx/master/css/jquery.selectx.css" type="text/css"></link>
+    <!-- Required END-->
 		
-		<!-- jQuery/Yahoo stuff BEGIN -->
-		<script type="text/javascript">
-			$(document).ready(function(){
-				$('#allDefaults').selectx();
-				$('#dressExistingSelect').selectx();
-				$('#nullOptionMessage').selectx({nullOptionMessage:'have a go, my friend'});
-				$('#selectOnce').selectx({selectOnce:true});
-				$('#selectOne').selectx({selectOne:true});
-				$('#onSelectCallback').selectx({onSelectCallback:function(){alert($('label',this).text());}});
-				$('#onUnselectCallback').selectx({onUnselectCallback:function(){alert($('label',this).text());}});
-				$('#selectionsContainer').selectx({selectionsContainer:$('#rightThere')});
-				$('#optionsList').selectx({optionsList:[{'text':'my own option 1','value':1},{'text':'my own option 2','value':2}]});
-				$('#templateHtml').selectx({templateHtml:'<fieldset class="selectx-option-widget"><legend class="selectx-option-value"></legend><a class="selectx-delete-widget">click to delete</a></fieldset>'});
-			})
-		</script>
-		<!-- jQuery/Yahoo stuff END -->
+    <!-- jQuery/Yahoo stuff BEGIN -->
+    <script type="text/javascript">
+	$(document).ready(function(){
+		$('#allDefaults').selectx();
+		$('#dressExistingSelect').selectx();
+		$('#nullOptionMessage').selectx({nullOptionMessage:'have a go, my friend'});
+		$('#selectOnce').selectx({selectOnce:true});
+		$('#selectOne').selectx({selectOne:true});
+		$('#onSelectCallback').selectx({onSelectCallback:function(){alert($('label',this).text());}});
+		$('#onUnselectCallback').selectx({onUnselectCallback:function(){alert($('label',this).text());}});
+		$('#selectionsContainer').selectx({selectionsContainer:$('#rightThere')});
+		$('#optionsList').selectx({optionsList:[{'text':'my own option 1','value':1},{'text':'my own option 2','value':2}]});
+		$('#templateHtml').selectx({templateHtml:'<fieldset class="selectx-option-widget"><legend class="selectx-option-value"></legend><a class="selectx-delete-widget">click to delete</a></fieldset>'});
+	})
+    </script>
+    <!-- jQuery/Yahoo stuff END -->
 
   </head>
   <body style="color:#1F1E1E;">
