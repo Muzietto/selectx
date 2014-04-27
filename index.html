@@ -11,6 +11,32 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+		<!-- Required BEGIN -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+		<script type="text/javascript" src="./jquery.selectx-0.3.js"></script>
+		
+		<link rel="stylesheet" href="./css/jquery.selectx.css" type="text/css"></link>
+		<!-- Required END-->
+		
+		<!-- jQuery/Yahoo stuff BEGIN -->
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#allDefaults').selectx();
+				$('#dressExistingSelect').selectx();
+				$('#nullOptionMessage').selectx({nullOptionMessage:'have a go, my friend'});
+				$('#selectOnce').selectx({selectOnce:true});
+				$('#selectOne').selectx({selectOne:true});
+				$('#onSelectCallback').selectx({onSelectCallback:function(){alert($('label',this).text());}});
+				$('#onUnselectCallback').selectx({onUnselectCallback:function(){alert($('label',this).text());}});
+				$('#selectionsContainer').selectx({selectionsContainer:$('#rightThere')});
+				$('#optionsList').selectx({optionsList:[{'text':'my own option 1','value':1},{'text':'my own option 2','value':2}]});
+				$('#templateHtml').selectx({templateHtml:'<fieldset class="selectx-option-widget"><legend class="selectx-option-value"></legend><a class="selectx-delete-widget">click to delete</a></fieldset>'});
+			})
+		</script>
+		<!-- jQuery/Yahoo stuff END -->
+
   </head>
   <body>
     <div class="wrapper">
@@ -29,36 +55,86 @@
       </header>
       <section>
         <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages">
+<span class="octicon octicon-link"></span></a>Selectx demo.</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+		<h3>Marco Faustinelli &lt;contacts@faustinelli.net&gt;</h3>
+		<p>The following examples illustrate the basic functionalities of this plugin. <br/>
+		All the needed customisation code is put inside this HTML page. <br/>
+		The default option widget template is defined inside the plugin itself.</p>
+			<fieldset id="allDefaultsDiv" class="" style="">
+				<legend>1) All defaults</legend>
+				<p>The purpose of SelectX is to keep a record of all your choices</p>
+				<select id="allDefaults"></select>
+			</fieldset>
+			
+			<fieldset id="dressExistingSelectDiv" class="" style="">
+				<legend>2) Dress an existing select</legend>
+				<p>Provide an existing select with selectx capabilities</p>
+				<select id="dressExistingSelect">
+					<option>existing option 1</option>
+					<option>existing option 2</option>
+					<option>existing option 3</option>
+					<option>existing option 4</option>
+				</select>
+			</fieldset>
+			
+			<fieldset id="nullOptionMessageDiv" class="" style="">
+				<legend>3) {nullOptionMessage:'have a go, my friend'}</legend>
+				<p>Personalized null label</p>
+				<select id="nullOptionMessage"></select>
+			</fieldset>
+			
+			<fieldset id="selectOnceDiv" class="" style="">
+				<legend>4) {selectOnce:true}</legend>
+				<p>Chosen options become unavailable, but reappear when you delete their widget</p>
+				<select id="selectOnce"></select>
+			</fieldset>
+			
+			<fieldset id="selectOneDiv" class="" style="">
+				<legend>5) {selectOne:true}</legend>
+				<p>You may choose only one time</p>
+				<select id="selectOne"></select>
+			</fieldset>
+			
+			<fieldset id="onSelectCallbackDiv" class="" style="">
+				<legend>6) {onSelectCallback:aFunction}</legend>
+				<p>Do whatever you want at the end of the widget creation</p>
+				<select id="onSelectCallback"></select>
+			</fieldset>
+			
+			<fieldset id="onUnselectCallbackDiv" class="" style="">
+				<legend>7) {onUnselectCallback:aFunction}</legend>
+				<p>Do whatever you want before the widget disappears</p>
+				<select id="onUnselectCallback"></select>
+			</fieldset>
+			
+			<fieldset id="selectionsContainerDiv" class="" style="">
+				<legend>8) {selectionsContainer:$jquerySelector}</legend>
+				<p>Attach option widgets wherever you want</p>
+				<select id="selectionsContainer"></select>
+				<div id="rightThere" style="float:right;width:20%;min-height:50px;border:1px solid red;"></div>
+				<br clear="both"/>
+			</fieldset>
+			
+			<fieldset id="optionsListDiv" class="" style="">
+				<legend>9) {optionsList:anArray}</legend>
+				<p>You may provide your own list of options. Minimal required fields are 'text' and 'value'</p>
+				<select id="optionsList"></select>
+			</fieldset>
+			
+			<fieldset id="templateHtmlDiv" class="" style="">
+				<legend>9) {templateHtml:aString}</legend>
+				<p>Provide your own static HTML snippet for the option widget. There are some mandatory class names to use.</p>
+				<select id="templateHtml"></select>
+			</fieldset>
+			
+			<p>Other features, not illustrated in this page:<br/>
+			- Serialisation of the plugin status with ordered recording of the chosen items<br/>
+			- Restore of the plugin after serialisation.</p>
+			
+			<br clear="both"/>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/Muzietto">Muzietto</a></p>
