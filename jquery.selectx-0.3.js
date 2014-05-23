@@ -188,6 +188,8 @@
 
             // 2) -optional- construction of select options
             if ($('option',$target).length===0){
+            	var widgetBuilt = false
+            	;
                 $target.append($('<option/>',{
                     text:inst.options.nullOptionMessage,
                     value:''
@@ -209,12 +211,18 @@
                         $target.append($option);
 
                         /* AAA!!! - optional re-initialisation of the option widget
-                     * NB: at this moment instance options and defaults haven't yet been merged' */
+                        * NB: at this step in the code instance options and defaults
+                        * haven't yet been merged! */
                         if (optObj.data && optObj.data[options.flagChosenOption||plugin._defaults.flagChosenOption]){
                             plugin._changeSelect($target, options, $option);
+                            widgetBuilt = true;
                         }
                     }
                 });
+                // possibly disable all options
+                if (inst.options.selectOne && widgetBuilt) {
+                	$('option',$target).attr('disabled','disabled');
+                }
             }
             return this;
         },
