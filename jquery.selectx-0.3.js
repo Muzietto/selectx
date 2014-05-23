@@ -258,7 +258,9 @@
                 return;
             }
             inst = $target.data(this.pluginName);
-		
+            $('option',$target).attr('disabled',false);
+
+            /*
             $('span',$target).each(function(index,span){
                 var opt, dummySpan
                 ;
@@ -266,6 +268,7 @@
                 opt = $('option',$(span));
                 $(span).replaceWith(opt);
             });
+            */
             return this;
         },
 	
@@ -342,7 +345,7 @@
                         dummySpan.replaceWith($opt);
                     }
                     */
-                   $opt.removeAttr('disabled');
+                    $opt.removeAttr('disabled');
                 }
                 /* remove object locator; if more stuff needs removing,
                  * put instructions inside onSelectCallback */
@@ -364,7 +367,8 @@
             }
 
             if (options.selectOne) {  // make invisible ALL options
-                $('option',$target).wrap('<span style="display:none;">');
+                //$('option',$target).wrap('<span style="display:none;">');  // IE8 won't do this good'
+                $('option',$target).attr('disabled','disabled');
             }
             else if (options.selectOnce) {
                 // find and mark selected option - it becomes invisible - THIS WON'T WORK IN IE!!!
