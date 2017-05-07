@@ -10,8 +10,8 @@ Each choice is recorded in the form of an HTML snippet called 'option widget'. O
 There are several options, most of them illustrated in the HTML presentation page.
 
 Other aspects currently NOT shown in the presentation page are:
-- usage of templates in the creation of the option widgets (only jtemplates supported as of writing)
+- usage of templates in the creation of the option widgets (only [jTemplates](http://jtemplates.tpython.com/) supported as of writing)
 - attachment of data to the option widgets
 - getter methods: 'chosenData' and 'bitmask'
 
-NB!! - this plugin depends on underscore.js.
+NB!! - this plugin depends on [underscore](http://underscorejs.org/).
